@@ -6,7 +6,7 @@ Participants::Participants() {
     handCount = 0;
 }
 
-void Participants::drawCard(Deck* deck) { // ポインタを使用
+void Participants::drawCard(Deck* deck) {
     if (handCount < 12) {
         hand[handCount++] = deck->getCard();
     }
