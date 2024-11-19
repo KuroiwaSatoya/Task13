@@ -1,9 +1,4 @@
-#include "deck.h"
-#include <cstdlib>
-#include <ctime>
-#include <iostream>
-
-using namespace std;
+#include "Deck.h"
 
 Deck::Card::Card() {
     suit = HEART;
@@ -23,7 +18,7 @@ int Deck::Card::getValue() const {
 void Deck::Card::printCard() const {
     const char* suits[] = { "ハート", "ダイアモンド", "クラブ", "スペード" };
     const char* nums[] = { "エース", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "ジャック", "クイーン", "キング" };
+                            "ジャック", "クイーン", "キング" };
     cout << suits[suit] << " の " << nums[num - 1] << endl;
 }
 

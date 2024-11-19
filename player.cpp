@@ -2,43 +2,30 @@
 #include <iostream>
 using namespace std;
 
-Player::Player() {
-    handCount = 0;
-}
+void Player::playTurn(Deck* deck) {
+    while (true) {
+        cout << "あなたのハンドは : " << endl;
+        showHand();
+        cout << "合計は : " << calculateScore() << endl << endl;
 
-void Player::drawCard(Deck& deck) {
-    if (handCount < 52) {
-        hand[handCount++] = deck.getCard();
-    }
-}
+        if (isBusted()) {
+            cout << "バーストしたのでディーラーの勝ちです。" << endl;
+            return;
+        }
 
-void Player::showHand(bool turnOver) const {
-    for (int i = 0; i < handCount; ++i) {
-        if (!turnOver && i > 0) {
-            cout << "伏せられています。" << endl;
+        cout << "ヒットかスタンドか選択してください (ヒット : h,  スタンド : s) > ";
+        char choice;
+        cin >> choice;
+
+        if (choice == 'h') {
+            drawCard(deck);
+        }
+        else if (choice == 's') {
+            break;
         }
         else {
-            hand[i].printCard();
+            cout << "エラー" << endl;
         }
+        cout << endl;
     }
-}
-
-int Player::calculateScore() const {
-    int score = 0, aceCount = 0;
-    for (int i = 0; i < handCount; ++i) {
-        int value = hand[i].getValue();
-        score += value;
-        if (value == 1) aceCount++;
-    }
-
-    while (score <= 11 && aceCount > 0) {
-        score += 10;
-        aceCount--;
-    }
-
-    return score;
-}
-
-bool Player::isBusted() const {
-    return calculateScore() > 21;
 }

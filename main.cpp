@@ -11,42 +11,22 @@ int main() {
     Player player;
     Dealer dealer;
 
-    player.drawCard(deck);
-    player.drawCard(deck);
-    dealer.drawCard(deck);
-    dealer.drawCard(deck);
+    player.drawCard(&deck);
+    player.drawCard(&deck);
+    dealer.drawCard(&deck);
+    dealer.drawCard(&deck);
 
     cout << "ディーラーの手札は : " << endl;
     dealer.showHand(false);
     cout << endl;
 
-    while (true) {
-        cout << "あなたのハンドは : " << endl;
-        player.showHand();
-        cout << "合計は : " << player.calculateScore() << endl << endl;
+    player.playTurn(&deck);
 
-        if (player.isBusted()) {
-            cout << "バーストしたのでディーラーの勝ちです。" << endl;
-            return 0;
-        }
-
-        cout << "ヒットかスタンドか選択してください (ヒット : h,  スタンド : s) > ";
-        char choice;
-        cin >> choice;
-
-        if (choice == 'h') {
-            player.drawCard(deck);
-        }
-        else if (choice == 's') {
-            break;
-        }
-        else {
-            cout << "エラー" << endl;
-        }
-        cout << endl;
+    if (player.isBusted()) {
+        return 0;
     }
 
-    dealer.playTurn(deck);
+    dealer.playTurn(&deck);
 
     cout << "ディーラーのハンドは : " << endl;
     dealer.showHand();

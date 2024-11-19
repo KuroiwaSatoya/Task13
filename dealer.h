@@ -1,7 +1,7 @@
 #pragma once
-#include "player.h"
+#include "participants.h"
 
-class Dealer : public Player {
+class Dealer : public Participants {
 public:
-    void playTurn(Deck& deck);
+    void playTurn(Deck* deck);
 };
