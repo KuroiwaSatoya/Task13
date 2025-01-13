@@ -15,11 +15,17 @@ int Deck::Card::getValue() const {
     return num;
 }
 
+// カード情報を文字列として表示する
 void Deck::Card::printCard() const {
     const char* suits[] = { "ハート", "ダイアモンド", "クラブ", "スペード" };
     const char* nums[] = { "エース", "2", "3", "4", "5", "6", "7", "8", "9", "10",
                             "ジャック", "クイーン", "キング" };
     cout << suits[suit] << " の " << nums[num - 1] << endl;
+}
+
+// Cardクラス同士の==比較に対応する
+bool Deck::Card::operator==(const Card& other) const {
+    return (suit == other.suit && num == other.num);
 }
 
 Deck::Deck() {
