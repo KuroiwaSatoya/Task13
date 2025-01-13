@@ -8,45 +8,69 @@ using namespace std;
 int main() {
     srand((unsigned int)(time(NULL)));
     Deck deck;
-    Player player;
+    Player player[4]; // プレイヤー4人に変更
+    string playerName[4] = { "プレイヤー1", "プレイヤー2", "プレイヤー3", "プレイヤー4" };
     Dealer dealer;
 
-    player.drawCard(&deck);
-    player.drawCard(&deck);
+    for (int i = 0; i < 4; ++i) {
+        player[i].drawCard(&deck);
+        player[i].drawCard(&deck);
+    }
     dealer.drawCard(&deck);
     dealer.drawCard(&deck);
 
-    cout << "ディーラーの手札は : " << endl;
+    cout << "=======================" << endl << "ディーラーの手札は : " << endl;
     dealer.showHand(false);
-    cout << endl;
+    cout << "=======================" << endl << endl;
 
-    player.playTurn(&deck);
+    cout << "=======================" << endl;
+    for (int i = 0; i < 4; ++i) {
+        cout << playerName[i] << " の手札は : " << endl;
+        player[i].showHand(true);
+        cout << "合計: " << player[i].calculateScore() << endl << endl;
+    }
+    cout << "=======================" << endl << endl;
 
-    if (player.isBusted()) {
-        return 0;
+    for (int i = 0; i < 4; ++i) {
+        cout << "=== " << playerName[i] << " のターン ===" << endl;
+        player[i].playTurn(&deck);
+        cout << endl << endl;
+
+        if (player[i].isBusted()) {
+            cout << playerName[i] << " はバーストしました。" << endl << endl;
+        }
     }
 
+    // ディーラーのターン処理
     dealer.playTurn(&deck);
 
+    // ディーラーの情報を表示
     cout << "ディーラーのハンドは : " << endl;
     dealer.showHand();
     cout << "ディーラーの合計は : " << dealer.calculateScore() << endl << endl;
 
-    if (dealer.isBusted()) {
-        cout << "ディーラーがバーストしました。あなたの勝ちです！" << endl;
-    }
-    else {
-        int playerScore = player.calculateScore();
-        int dealerScore = dealer.calculateScore();
-
-        if (playerScore > dealerScore) {
-            cout << "勝ち！" << endl;
+    // 勝敗判定
+    for (int i = 0; i < 4; ++i) {
+        if (player[i].isBusted()) {
+            cout << playerName[i] << " はバーストしたため、負けです。" << endl;
         }
-        else if (playerScore < dealerScore) {
-            cout << "負け！" << endl;
+        else if (dealer.isBusted()) {
+            cout << "ディーラーがバーストしたため、" << playerName[i] << " の勝ちです！" << endl;
         }
         else {
-            cout << "引き分け！" << endl;
+            int playerScore = player[i].calculateScore();
+            int dealerScore = dealer.calculateScore();
+
+            if (playerScore > dealerScore) {
+                cout << playerName[i] << " の勝ち！" << endl;
+            }
+            else if (playerScore < dealerScore) {
+                cout << playerName[i] << " の負け！" << endl;
+            }
+            else {
+                cout << playerName[i] << " は引き分け！" << endl;
+            }
         }
+        cout << endl;
     }
 }
