@@ -18,6 +18,7 @@ public:
 
         Suit suit;
         Num num;
+    public:
 
         Card();
         void Initialize(Suit s, Num r);
