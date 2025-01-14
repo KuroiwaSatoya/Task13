@@ -2,6 +2,8 @@
 #include "deck.h"
 
 class Participants {
+private:
+    static const int MAX_HAND = 12;
 protected:
     Deck::Card hand[12];
     int handCount;
