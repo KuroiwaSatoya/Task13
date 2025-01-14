@@ -41,15 +41,12 @@ int main() {
         }
     }
 
-    // ディーラーのターン処理
     dealer.playTurn(&deck);
 
-    // ディーラーの情報を表示
     cout << "ディーラーのハンドは : " << endl;
     dealer.showHand();
     cout << "ディーラーの合計は : " << dealer.calculateScore() << endl << endl;
 
-    // 勝敗判定
     for (int i = 0; i < 4; ++i) {
         if (player[i].isBusted()) {
             cout << playerName[i] << " はバーストしたため、負けです。" << endl;
