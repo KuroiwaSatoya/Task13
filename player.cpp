@@ -2,13 +2,13 @@
 #include <iostream>
 using namespace std;
 
-void Player::playTurn(Deck* deck) {
+void Player::PlayTurn(Deck* deck) {
     while (true) {
         cout << "あなたのハンドは : " << endl;
-        showHand();
-        cout << "合計は : " << calculateScore() << endl << endl;
+        ShowHand();
+        cout << "合計は : " << CalculateScore() << endl << endl;
 
-        if (isBusted()) {
+        if (IsBusted()) {
             cout << "バーストしたのでディーラーの勝ちです。" << endl;
             return;
         }
@@ -18,7 +18,7 @@ void Player::playTurn(Deck* deck) {
         cin >> choice;
 
         if (choice == 'h') {
-            drawCard(deck);
+            DrawCard(deck);
         }
         else if (choice == 's') {
             break;

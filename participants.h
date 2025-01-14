@@ -8,8 +8,8 @@ protected:
 
 public:
     Participants();
-    void drawCard(Deck* deck);
-    void showHand(bool turnOver = true) const;
-    int calculateScore() const;
-    bool isBusted() const;
+    void DrawCard(Deck* deck);
+    void ShowHand(bool turnOver = true) const;
+    int CalculateScore() const;
+    bool IsBusted() const;
 };

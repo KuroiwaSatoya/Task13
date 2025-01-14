@@ -3,5 +3,5 @@
 
 class Player : public Participants {
 public:
-    void playTurn(Deck* deck);
+    void PlayTurn(Deck* deck);
 };

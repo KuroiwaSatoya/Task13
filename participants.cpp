@@ -6,27 +6,27 @@ Participants::Participants() {
     handCount = 0;
 }
 
-void Participants::drawCard(Deck* deck) {
+void Participants::DrawCard(Deck* deck) {
     if (handCount < 12) {
-        hand[handCount++] = deck->getCard();
+        hand[handCount++] = deck->GetCard();
     }
 }
 
-void Participants::showHand(bool turnOver) const {
+void Participants::ShowHand(bool turnOver) const {
     for (int i = 0; i < handCount; ++i) {
         if (!turnOver && i > 0) {
             cout << "•š‚¹‚ç‚ê‚Ä‚¢‚Ü‚·B" << endl;
         }
         else {
-            hand[i].printCard();
+            hand[i].PrintCard();
         }
     }
 }
 
-int Participants::calculateScore() const {
+int Participants::CalculateScore() const {
     int score = 0, aceCount = 0;
     for (int i = 0; i < handCount; ++i) {
-        int value = hand[i].getValue();
+        int value = hand[i].GetValue();
         score += value;
         if (value == 1) aceCount++;
     }
@@ -39,6 +39,6 @@ int Participants::calculateScore() const {
     return score;
 }
 
-bool Participants::isBusted() const {
-    return calculateScore() > 21;
+bool Participants::IsBusted() const {
+    return CalculateScore() > 21;
 }

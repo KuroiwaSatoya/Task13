@@ -7,6 +7,7 @@ using namespace std;
 class Deck {
 public:
     struct Card {
+    private:
         // カードのマークをもつ
         enum Suit { HEART, DIAMOND, CLUB, SPADE };
         // カードの番号をもつ
@@ -20,18 +21,19 @@ public:
 
         Card();
         void Initialize(Suit s, Num r);
-        int getValue() const;
-        void printCard() const;
+        int GetValue() const;
+        void PrintCard() const;
 
         bool operator==(const Card& other) const;
     };
 
 private:
-    Card card[52];
+    static const int MAX_CARDS = 52;
+    Card card[MAX_CARDS];
     int cardDeal;
 
 public:
     Deck();
     void Shuffle();
-    Card getCard();
+    Card GetCard();
 };

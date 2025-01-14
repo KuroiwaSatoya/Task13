@@ -10,13 +10,13 @@ void Deck::Card::Initialize(Suit s, Num r) {
     num = r;
 }
 
-int Deck::Card::getValue() const {
-    if (num >= TEN) return 10;
+int Deck::Card::GetValue() const {
+    if (num >= TEN) { return 10; }
     return num;
 }
 
 // カード情報を文字列として表示する
-void Deck::Card::printCard() const {
+void Deck::Card::PrintCard() const {
     const char* suits[] = { "ハート", "ダイアモンド", "クラブ", "スペード" };
     const char* nums[] = { "エース", "2", "3", "4", "5", "6", "7", "8", "9", "10",
                             "ジャック", "クイーン", "キング" };
@@ -49,6 +49,6 @@ void Deck::Shuffle() {
     }
 }
 
-Deck::Card Deck::getCard() {
+Deck::Card Deck::GetCard() {
     return card[cardDeal++];
 }
